@@ -1,12 +1,7 @@
 package godbf
 
 import (
-	"errors"
 	"sync"
-)
-
-var (
-	ErrLocked = errors.New("file already locked by other process")
 )
 
 // TryLocker is a sync.Locker augmented with TryLock.

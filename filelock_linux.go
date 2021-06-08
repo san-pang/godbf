@@ -79,7 +79,7 @@ func ofdTryLockFile(fd int) (bool, error) {
 	flock := wrlck
 	if err := syscall.FcntlFlock(uintptr(fd), F_OFD_SETLK, &flock); err != nil {
 		if err == syscall.EWOULDBLOCK {
-			return false, ErrLocked
+			return false, errLocked
 		}
 		return false, err
 	}

@@ -1,7 +1,6 @@
 package godbf
 
 import (
-	"errors"
 	"os"
 	"syscall"
 	"unsafe"
@@ -11,8 +10,6 @@ var (
 	modkernel32      = syscall.NewLazyDLL("kernel32.dll")
 	procLockFileEx   = modkernel32.NewProc("LockFileEx")
 	procUnlockFileEx = modkernel32.NewProc("UnlockFileEx")
-
-	errLocked = errors.New("The process cannot access the file because another process has locked a portion of the file.")
 )
 
 const (
@@ -63,7 +60,7 @@ func lockFile(fd syscall.Handle, flags uint32) (bool, error) {
 	if err == nil {
 		return true, nil
 	} else if err.Error() == errLocked.Error() {
-		return false, ErrLocked
+		return false, errLocked
 	} else if err != errLockViolation {
 		return false, err
 	}
