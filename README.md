@@ -132,10 +132,10 @@ dbf.AddBooleanField("FINISHED")
 dbf.AddStringField("STOCK_CODE", 20)
 // append record, use Post() method to post changes to file
 dbf.Append()
-if err := dbf.SetFieldValue("jllx", "2"); err != nil {
+if err := dbf.SetFieldValue("QTY", "2"); err != nil {
 	panic(err)
 }
-if err := dbf.SetFieldValue("rrfl", "0.0130000"); err != nil {
+if err := dbf.SetFieldValue("PRICE", "12.13"); err != nil {
 	panic(err)
 }
 if err := dbf.Post(); err != nil {
